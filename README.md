@@ -2,7 +2,8 @@
 
 in this competition i worked with a challenging time-series dataset consisting of daily sales data, provided by - 1C Company. the goal was to predict total sales for every product and store in the next month. 
 By solving this competition i was able to apply and enhance my data science skills.
-Main methods I used for this competition  is that provides LightGBM the  Leaderboard score: 0.90807(RMSE)
+Main methods I used for this competition  is that provides LightGBM the  Leaderboard score: 0.90807(RMSE).
+
 The most important features are:
 * standard lag features (target value for X-months ago, target mean value for shop/item_category/items) (X=1,2,3,6,12)
 * how much time this item is on the market (or is it brand new item that appear for the very first time)
