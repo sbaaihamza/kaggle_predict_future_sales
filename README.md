@@ -10,6 +10,7 @@ The most important features are:
 * mean target values for new items (that appear for the very first time) for shop/item_category
 * text features  generated from shop_names
 * grouping items into small categories 
+
 Tools I used in this competition are: numpy, pandas, sklearn, XGBoost GPU, LightGBM
 All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tuning models took about 12 to 16 hours, and training on the whole dataset took less than 15 minutes
 
