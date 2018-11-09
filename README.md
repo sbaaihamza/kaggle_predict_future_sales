@@ -16,15 +16,15 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 # I. Exploratory Data Analysis
 information can be found in  2 EDA notebooks
 
-#II. Feature Engineering
+# II. Feature Engineering
 information can be found in feature_eng  notebook
 
-#III. Cross validations
+# III. Cross validations
 information can be found in function define within feature_eng  notebook called get_cv_idxs()
 
-#IV. Training methods:
+# IV. Training methods:
 information can be found in tuning_lgb and tuning_xgb notebook
 
-#V. Ensembling
+# V. Ensembling
 information can be found in ensemble notebook
 
