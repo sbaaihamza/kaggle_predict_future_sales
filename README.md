@@ -1,6 +1,6 @@
 # kaggle_predict_future_sales
 
-in this competition i worked with a challenging time-series dataset consisting of daily sales data, provided by - 1C Company. the goal was to predict total sales for every product and store in the next month. 
+In this competition i worked with a challenging time-series dataset consisting of daily sales data, provided by - 1C Company. The goal was to predict total sales for every product and store in the next month. 
 By solving this competition i was able to apply and enhance my data science skills.
 Main methods I used for this competition  is that provides LightGBM the  Leaderboard score: 0.90807(RMSE).
 
@@ -16,17 +16,17 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 
 
 # I. Exploratory Data Analysis
-information can be found in  2 EDA notebooks
+Information can be found in  2 EDA notebooks
 
 # II. Feature Engineering
-information can be found in feature_eng  notebook
+Information can be found in feature_eng  notebook
 
 # III. Cross validations
-information can be found in function define within feature_eng  notebook called get_cv_idxs()
+Information can be found in function define within feature_eng  notebook called get_cv_idxs()
 
 # IV. Training methods:
-information can be found in tuning_lgb and tuning_xgb notebook
+Information can be found in tuning_lgb and tuning_xgb notebook
 
 # V. Ensembling
-information can be found in ensemble notebook
+Information can be found in ensemble notebook
 
