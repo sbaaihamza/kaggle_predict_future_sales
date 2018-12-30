@@ -16,7 +16,7 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 
 
 # I. Exploratory Data Analysis
-**Information can be found in  2 EDA notebooks
+**Information can be found in  2 EDA notebooks**
 
 * Take a quick look: -Import each dataset and make a Quick exploration for each one 
 - Detect possible  outliers and missing values using (describe() and  hist() )
@@ -31,7 +31,7 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 -so what realy helps is Exploratory Analysis(Bivariate Exploration specifically) using the date variable on the x-axis  and other variable on the y-axis
 
 # II. Feature Engineering
-**Information can be found in feature_eng  notebook
+**Information can be found in feature_eng  notebook**
 
 -Category_item and shop_items shows strong decreasing trend and yearly seasonal pattern, therefore, should incorporate lag 12 features. Autocorrelation plot shows the previous 6 months often have positive correlation, therefore include lag 1 to 6 features.
 
@@ -39,11 +39,11 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 * Prepare the data for ML algo
 
 # III. Cross validations
-**Information can be found in function define within feature_eng  notebook called get_cv_idxs()
+**Information can be found in function define within feature_eng  notebook called get_cv_idxs()**
 
 # IV. Training methods:
-**Information can be found in tuning_lgb and tuning_xgb notebook
+**Information can be found in tuning_lgb and tuning_xgb notebook**
 
 # V. Ensembling
-**Information can be found in ensemble notebook
+**Information can be found in ensemble notebook**
 
