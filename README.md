@@ -61,22 +61,21 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 * finally we will end up this notebook by Train test split which is time based, and save them.  **now our data is prepared for a ML model**
 
 # III. Cross validations
-**Information can be found in function define within feature_eng  notebook called get_cv_idxs()**
+**Information can be found in function define within tuning_lgb notebook called get_cv_idxs()**
 
-* Two ways to split for train and validation:
- - use last two month as validation set
- - Use date_block_num in {9,21,33} as validation set
+* Since we are dealing we a time series data so I have to pre-define which data can be used for train and test. I have a function called get_cv_idxs that will return a list of tuples for cross validation. I decide to use 6 folds, from date_block_num 28 to 33, and luckily this CV score is consistent to leaderboard score.
+
+# dataframe must contain date_block_num features
+Results from this function can be passed to sklearn GridSearchCV.
  
 After comparing the validation RMSE score vs. leaderboard RMSE score, selected the second validation method.
 
 # IV. Training methods:
 **Information can be found in tuning_lgb and tuning_xgb notebook**
-Metrics optimization
 
-Regressors minimize mean squared error. Validation metric used RMSE, same as the evaluation metric of the project.
-Hyperparameter tuning
+* Metrics optimization: Regressors minimize mean squared error. Validation metric used RMSE, same as the evaluation metric of the project.
 
-used early stopping to do parameter tuning for xgb and neural networks.
+* Hyperparameter tuning: used early stopping to do parameter tuning for xgb, lgb and neural networks.
 
 # V. Ensembling
 **Information can be found in ensemble notebook**
