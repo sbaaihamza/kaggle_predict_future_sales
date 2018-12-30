@@ -62,10 +62,11 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 
 # III. Cross validations
 **Information can be found in function define within feature_eng  notebook called get_cv_idxs()**
-Train test split is time based.
-Two ways to split for train and validation:
-use last two month as validation set
-Use date_block_num in {9,21,33} as validation set
+
+* Two ways to split for train and validation:
+ - use last two month as validation set
+ - Use date_block_num in {9,21,33} as validation set
+ 
 After comparing the validation RMSE score vs. leaderboard RMSE score, selected the second validation method.
 
 # IV. Training methods:
