@@ -41,8 +41,8 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 * Feature preprocessing and generation:
    - grouping items into small categories and apply one-hot-encoding to them   : generated from the first word in the item_category_name variable (with no Stopwords and with Stemming)
    - generate shop_city from shop_name and apply one-hot-encoding to them : detect the city using a list of all russian_cities
-
-
+   - add sepecial dates: from  generate_calendar package i generate russian calendar that highlight contain 4 features [is_weekend	,is_business_day,	is_holiday] before adding those features to our dataset , i had to mean encoding them with the month variable.
+   
 * Feature extraction from text ( from shop_names and item_name) but unfortunately it doesn't improve the model
    - clean filter shops names and item_name before encoding them
    - Use TfidfVectorizer to transform item_name and shop_name into vectors.
@@ -50,15 +50,15 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 
 * Mean encodings
    - Since the competition task is to make a monthly prediction, we need to aggregate the data to monthly level before doing any encodings.
-   - the test set provided it contain just 2 columns to make ['shop_id', 'item_id'] and even new items that are note on the training data, so first we need to create a grid For every month('date_block_num') from all shops/items combinations from that month
-
-Item counts for each shop-item pairs per month (‘target’). I also generated sum and mean of item counts for each shop per month(date_block_num) (‘shop_block_target_sum’,’shop_block_target_mean’), each item per month (‘item_block_target_sum’,’item_block_target_mean’, and each item category per month (‘item_cat_block_target_sum’,’item_cat_block_target_mean’)
-   - standard lag features (target value for X-months ago, target mean value for shop/item_category/items) (X=1,2,3,6,12)
-   - Generated mean encoding for all categorical features using expanding mean
-   Features encoded: item_id,shop_id,item_category_id,month,year
-   Target used for encoding: target, shop_target, item_target, category_target
-
-* Prepare the data for ML algo
+   - the test set provided it contain just 2 columns ['shop_id', 'item_id'] and even new items that are note on the training data, so first we need to create a grid For every month('date_block_num') from all shops/items combinations from that month
+   - then Add submission shop_id-item_id in order to test predictions #test['date_block_num'] = 34
+   - generally mean encoding for all categorical features, Features encoded: item_id,shop_id,item_category_id and Target used for encoding: {'target':'sum','target_mean':np.mean}
+   - finally, create standard lag features (target value for X-months(date_block_num) ago, target mean encoding value for shop/item_category/items) (X=1,2,3,6,12), using the created function **get_feature_matrix()**
+   
+* time features: the goal is to highlight how much time this item is on the market (or is it brand new item that appear for the very first time)
+   - for this purpose i create two new features [ year_min, month_min] out of the date feature
+   - then i generate a bunch of mean encoding for combinations of Features encoded:[ year_min, month_min, shop_id, item_category_id] and Target used for encoding: {'item_cnt_day':np.mean}
+* finally we will end up this notebook by Train test split which is time based, and save them.  **now our data is prepared for a ML model**
 
 # III. Cross validations
 **Information can be found in function define within feature_eng  notebook called get_cv_idxs()**
