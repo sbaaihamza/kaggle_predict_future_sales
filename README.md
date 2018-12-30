@@ -49,10 +49,12 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
    - Then use TruncatedSVD to reduce its dimensions to 10
 
 * Mean encodings
-- Since the competition task is to make a monthly prediction, we need to aggregate the data to monthly level before doing any encodings
+   - Since the competition task is to make a monthly prediction, we need to aggregate the data to monthly level before doing any encodings.
+   - the test set provided it contain just 2 columns to make ['shop_id', 'item_id'] and even new items that are note on the training data, so first we need to create a grid For every month('date_block_num') from all shops/items combinations from that month
+
 Item counts for each shop-item pairs per month (‘target’). I also generated sum and mean of item counts for each shop per month(date_block_num) (‘shop_block_target_sum’,’shop_block_target_mean’), each item per month (‘item_block_target_sum’,’item_block_target_mean’, and each item category per month (‘item_cat_block_target_sum’,’item_cat_block_target_mean’)
-- standard lag features (target value for X-months ago, target mean value for shop/item_category/items) (X=1,2,3,6,12)
-   -Generated mean encoding for all categorical features using expanding mean
+   - standard lag features (target value for X-months ago, target mean value for shop/item_category/items) (X=1,2,3,6,12)
+   - Generated mean encoding for all categorical features using expanding mean
    Features encoded: item_id,shop_id,item_category_id,month,year
    Target used for encoding: target, shop_target, item_target, category_target
 
