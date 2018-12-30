@@ -8,7 +8,7 @@ The most important features are:
 * standard lag features (target value for X-months ago, target mean value for shop/item_category/items) (X=1,2,3,6,12)
 * how much time this item is on the market (or is it brand new item that appear for the very first time)
 * mean target values for new items (that appear for the very first time) for shop/item_category
-* text features  generated from shop_names
+* text feature  generated from shop_names 
 * grouping items into small categories 
 
 Tools I used in this competition are: numpy, pandas, sklearn, XGBoost GPU, LightGBM
@@ -30,21 +30,31 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
  * Discover and Visualize to gain insights: 
    - using summary statistics its hepls but not that much cause we're dealing with time-series datasets
    - so what realy helps is Exploratory Analysis(Bivariate Exploration specifically) using the date variable on the x-axis  and other variable on the y-axis
+ * Data leakage:
+     - several shops doesn't exist in the testset
+     - investigate about the possibility of losing information if we drop those shops
+     -  so as result of i drop some of them
 
 # II. Feature Engineering
 **Information can be found in feature_eng  notebook**
 
-* Feature preprocessing and generation
+* Feature preprocessing and generation:
+   - grouping items into small categories and apply one-hot-encoding to them   : generated from the first word in the item_category_name variable (with no Stopwords and with Stemming)
+   - generate shop_city from shop_name and apply one-hot-encoding to them : detect the city using a list of all russian_cities
 
-* Feature extraction from text
-- Use TfidfVectorizer to transform item_name and category_name into vectors.
-- Then use TruncatedSVD to reduce its dimensions to 10
+
+* Feature extraction from text ( from shop_names and item_name) but unfortunately it doesn't improve the model
+   - clean filter shops names and item_name before encoding them
+   - Use TfidfVectorizer to transform item_name and shop_name into vectors.
+   - Then use TruncatedSVD to reduce its dimensions to 10
 
 * Mean encodings
-
-Generated mean encoding for all categorical features using expanding mean
-Features encoded: item_id,shop_id,item_category_id,month,year
-Target used for encoding: target, shop_target, item_target, category_target
+- Since the competition task is to make a monthly prediction, we need to aggregate the data to monthly level before doing any encodings
+Item counts for each shop-item pairs per month (‘target’). I also generated sum and mean of item counts for each shop per month(date_block_num) (‘shop_block_target_sum’,’shop_block_target_mean’), each item per month (‘item_block_target_sum’,’item_block_target_mean’, and each item category per month (‘item_cat_block_target_sum’,’item_cat_block_target_mean’)
+- standard lag features (target value for X-months ago, target mean value for shop/item_category/items) (X=1,2,3,6,12)
+   -Generated mean encoding for all categorical features using expanding mean
+   Features encoded: item_id,shop_id,item_category_id,month,year
+   Target used for encoding: target, shop_target, item_target, category_target
 
 * Prepare the data for ML algo
 
