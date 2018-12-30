@@ -22,7 +22,7 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 - Detect possible  outliers and missing values using (describe() and  hist() )
 * Deeper investigation through some ambiguous or potential variables (Univariate Exploration): builds a solide foundation about the distribution and the structure of each dataset 
 * Data cleaning:
--item_cnt_day variable is heavily skewed, most of the values are arround 0 and 5.0 , this range contain 99.9% of the data range. but before droping them we need to check if those are a real outliers or special cases ( should check other items with item-id for those outlier items ).
+   ***-item_cnt_day variable is heavily skewed, most of the values are arround 0 and 5.0 , this range contain 99.9% of the data range. but before droping them we need to check if those are a real outliers or special cases ( should check other items with item-id for those outlier items ).***
 -my investigation lead me to drop some rows that are clearly outliers from their influence on the distribution of that specific item
 -i will do the same for item_price variable as item_cnt_day
 -for the shop dataset i found out that several shops are duplicates of each other (according to its name), so i fix the training and testings set
