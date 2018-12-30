@@ -34,16 +34,36 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 # II. Feature Engineering
 **Information can be found in feature_eng  notebook**
 
--Category_item and shop_items shows strong decreasing trend and yearly seasonal pattern, therefore, should incorporate lag 12 features. Autocorrelation plot shows the previous 6 months often have positive correlation, therefore include lag 1 to 6 features.
+* Feature preprocessing and generation
 
+* Feature extraction from text
+- Use TfidfVectorizer to transform item_name and category_name into vectors.
+- Then use TruncatedSVD to reduce its dimensions to 10
+
+* Mean encodings
+
+Generated mean encoding for all categorical features using expanding mean
+Features encoded: item_id,shop_id,item_category_id,month,year
+Target used for encoding: target, shop_target, item_target, category_target
 
 * Prepare the data for ML algo
 
 # III. Cross validations
 **Information can be found in function define within feature_eng  notebook called get_cv_idxs()**
+Train test split is time based.
+Two ways to split for train and validation:
+use last two month as validation set
+Use date_block_num in {9,21,33} as validation set
+After comparing the validation RMSE score vs. leaderboard RMSE score, selected the second validation method.
 
 # IV. Training methods:
 **Information can be found in tuning_lgb and tuning_xgb notebook**
+Metrics optimization
+
+Regressors minimize mean squared error. Validation metric used RMSE, same as the evaluation metric of the project.
+Hyperparameter tuning
+
+used early stopping to do parameter tuning for xgb and neural networks.
 
 # V. Ensembling
 **Information can be found in ensemble notebook**
