@@ -65,17 +65,22 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 
 * Since we are dealing we a time series data so I have to pre-define which data can be used for train and test. I have a function called get_cv_idxs that will return a list of tuples for cross validation. I decide to use 6 folds, from date_block_num 28 to 33, and luckily this CV score is consistent to leaderboard score.
 
-# dataframe must contain date_block_num features
-Results from this function can be passed to sklearn GridSearchCV.
- 
-After comparing the validation RMSE score vs. leaderboard RMSE score, selected the second validation method.
-
 # IV. Training methods:
 **Information can be found in tuning_lgb and tuning_xgb notebook**
 
 * Metrics optimization: Regressors minimize mean squared error. Validation metric used RMSE, same as the evaluation metric of the project.
 
-* Hyperparameter tuning: used early stopping to do parameter tuning for xgb, lgb and neural networks.
+* Hyperparameter tuning:  using hyperopt package (early stopping ), then manually tune with GridSearchCVused  
+
+
+* 1. LightGBM
+when tuning the size of the tree, it’s better to tune min_data_in_leaf instead of max_depth. This means to let the tree grows freely until the condition for min_data_in_leaf is met. I believe this will allow deeper logic to develop without overfitting too much. Colsample_bytree and subsample are also used to control overfitting. And I keep the learning rate small throughout tuning.
+
+* 2. XGBoost
+I ran the XGBoost with CPU version, and I follow the same tuning procedures as mentioned. For some reason, I can’t seem to get a consistent result while running XGBoost, even with the same parameters. 
+
+
+finally, I pick 2 models: one with max_depth tuned, and one without max_depth tuned, to get out-of-fold features and hoping they are different enough for ensembling.
 
 # V. Ensembling
 **Information can be found in ensemble notebook**
