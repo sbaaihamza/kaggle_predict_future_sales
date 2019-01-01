@@ -74,16 +74,17 @@ All models are tuned on a windows10 with Intel i5 8thgen processor, 8GB RAM. Tun
 
 
 * **1. LightGBM**
-when tuning the size of the tree, it’s better to tune min_data_in_leaf instead of max_depth. This means to let the tree grows freely until the condition for min_data_in_leaf is met. I believe this will allow deeper logic to develop without overfitting too much. Colsample_bytree and subsample are also used to control overfitting. And I keep the learning rate small throughout tuning.
+   when tuning the size of the tree, it’s better to tune min_data_in_leaf instead of max_depth. This means to let the tree grows freely until the condition for min_data_in_leaf is met. I believe this will allow deeper logic to develop without overfitting too much. Colsample_bytree and subsample are also used to control overfitting. And I keep the learning rate small throughout tuning.
 
 * **2. XGBoost**
-I ran the XGBoost with CPU version, and I follow the same tuning procedures as mentioned. For some reason, I can’t seem to get a consistent result while running XGBoost, even with the same parameters. 
+   I ran the XGBoost with CPU version, and I follow the same tuning procedures as mentioned. For some reason, I can’t seem to get a consistent result while running XGBoost, even with the same parameters. 
 
 
 finally, I pick 2 models: one with max_depth tuned, and one without max_depth tuned, to get out-of-fold features and hoping they are different enough for ensembling.
 
 # V. Ensembling
 **Information can be found in ensemble notebook**
+
 With XGB model, LightGBM-1 and LightGBM-2 out-of-fold features from previous methods, I calculated pairwise differences between them, get the mean of all 3, and include the most important features from feature importance: ‘target_lag_1’ to  the dataset.
 
 From here I try few ensembling methods
