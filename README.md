@@ -87,11 +87,8 @@ finally, I pick 2 models: one with max_depth tuned, and one without max_depth tu
 
 With XGB model, LightGBM-1 and LightGBM-2 out-of-fold features from previous methods, I calculated pairwise differences between them, get the mean of all 3, and include the most important features from feature importance: ‘target_lag_1’ to  the dataset.
 
-From here I try few ensembling methods
+- From here I try few ensembling methods:Simple average and Weighted average, SKlearn linear regression and Elasticnet
 
-Simple average and Weighted average
-SKlearn linear regression and Elasticnet
-Shallow Random Forest, tuned with 5 folds (from 29 to 33)
-All of them results in RMSE score that is slightly better  than the LightGBM best model.
+the last methods results in RMSE score that is slightly better  than the LightGBM best model.
 
 
